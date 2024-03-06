@@ -1,49 +1,64 @@
-#include <iostream>
+ 
 #include <iostream>
 using namespace std;
 int main() {
-  int m,n;
-  cout<<"Enter size of arr1 : ";cin>>m;
-  cout<<"Enter size of arr2 : ";cin>>n;
-   
-  int arr1[m];
-  int arr2[n];
-  int result[m+n];
-  int j=0,k=0;
-  cout<<"Enter element of array 1 : ";
-  for(int i=0;i<m;i++){
-    cin>>arr1[i];
-  } 
-  cout<<"Enter element of array 2 : ";
+     int n;cout<<"Enter size of array : ";cin>>n;
+  int arr[n];
+  cout<<"Enter element of array : ";
   for(int i=0;i<n;i++){
-    cin>>arr2[i];
-  } 
-  int i=0;
-  for(;i<m+n-1;i++){
- 
-   if(arr1[j]<arr2[k]){
-     result[i]=arr1[j];j++;
-   }
-  else  
-   {
-     result[i]=arr2[k];k++;
-   }
-
+    cin>>arr[i];
   }
-  
-  
-      
+  do{
+  int x,c=0;
+  cout<<"Enter target sum : ";cin>>x;
+  for(int i=0;i<n;i++){
+    for(int j=i+1;j<n;j++){
+      if(arr[i]+arr[j]==x){
+        c++;
+        cout<<"( "<<arr[i]<<" , "<<arr[j]<<" )"<<endl;
+      }
+    }
+  }
+  if(c>0){
+    cout<<"yes"<<endl;
+    cout<<"total pairs : "<<c<<endl;
+  }
+  else
+    cout<<"no"<<endl;
+  }while(true);
+    return 0;
+}
+/*----------------------------------------------------*/
+/*only for assending order array */
+#include <iostream>
+using namespace std;
+int main() {
+     int n;cout<<"Enter size of array : ";cin>>n;
+  int arr[n];
+  cout<<"Enter element of array : ";
+  for(int i=0;i<n;i++){
+    cin>>arr[i];
+  }
+  int x;
+  cout<<"Enter target sum : ";cin>>x;
+  bool found = false;
+  int i=0;int j=n-1;
+  while(i<j){
+    if(arr[i]+arr[j]==x){
+       found=true;
+      break;
+    }
+    else if(arr[i]+arr[j]>x){
+      j--;
+    }
     
- while(j<m){
-   result[i]=arr1[j];
-    i++;j++;
-}
- while(k<n){
-   result[i]=arr2[k];
-    i++;k++;
- }
-  cout<<"merge array ";
-  for(int i=0;i<m+n;i++){
-    cout<<result[i]<<" ";
-  } 
-}
+    else if(arr[i]+arr[j]<x){
+      i++;
+    }
+  }
+    if(found==true){
+      cout<<"YES";
+    }
+    else
+      cout<<"no";
+  }
